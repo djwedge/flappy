@@ -47,6 +47,8 @@ var mainState = {
         var spaceKey = game.input.keyboard.addKey(
                         Phaser.Keyboard.SPACEBAR);
         spaceKey.onDown.add(this.jump, this);
+        // Call the 'jump' function when we tap/click on the screen
+        game.input.onDown.add(this.jump, this);
 
         // Add sound for the jump
         this.jumpSound = game.add.audio('jump');
