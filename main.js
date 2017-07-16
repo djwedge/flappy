@@ -5,6 +5,8 @@ var mainState = {
         game.load.image('bird', 'assets/bird.png'); 
         // Load the pipe sprite
         game.load.image('pipe', 'assets/pipe.png');
+        // Load jump sound
+        game.load.audio('jump', 'assets/jump.wav');
     },
 
     create: function() { 
@@ -30,7 +32,10 @@ var mainState = {
         // Call the 'jump' function when the spacekey is hit
         var spaceKey = game.input.keyboard.addKey(
                         Phaser.Keyboard.SPACEBAR);
-        spaceKey.onDown.add(this.jump, this);     
+        spaceKey.onDown.add(this.jump, this);
+
+        // Add sound for the jump
+        this.jumpSound = game.add.audio('jump');
         
         // Create an empty group
         this.pipes = game.add.group();
@@ -73,6 +78,9 @@ var mainState = {
         animation.start(); 
         // animation can be rewritten like this
         // game.add.tween(this.bird).to({angle: -20}, 100).start(); 
+        
+        // Play sound
+        this.jumpSound.play();
     },
 
     // Restart the game
